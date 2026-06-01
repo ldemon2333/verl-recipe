@@ -45,7 +45,7 @@ actor_rollout_ref:
     temperature: 1.0
     response_length: 1024
     checkpoint_engine:
-      backend: hccl
+      backend: nccl
       update_weights_bucket_megabytes: 2048
       engine_kwargs: {}
     agent:
@@ -74,7 +74,7 @@ trainer:
   experiment_name: "test_run"
   use_legacy_worker_impl: "disable"
   logger: ["console"]
-  device: npu
+  device: cuda
   nnodes: 1          # for rollout
   n_gpus_per_node: 2 # for rollout
   save_freq: 20
@@ -107,4 +107,4 @@ async_resources:
     n_gpus_per_node: 0
   actor_train:
     nnodes: 1
-    n_gpus_per_node: 4
+    n_gpus_per_node: 2
